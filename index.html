@@ -1,0 +1,1097 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rounak Bajpai | Equity Research Portal</title>
+    <meta name="description" content="Institutional-quality equity research, valuation models and investment analysis on Indian listed companies by Rounak Bajpai.">
+    <meta name="keywords" content="equity research, financial modelling, DCF valuation, India, Marico, Tata Elxsi, Ashok Leyland, TDPS">
+    <meta name="author" content="Rounak Bajpai">
+    <meta property="og:title" content="Rounak Bajpai | Equity Research Portal">
+    <meta property="og:description" content="Institutional-quality equity research and valuation models on Indian listed companies.">
+    <meta property="og:type" content="website">
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@0,300;0,400;0,500;0,600;1,300&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        :root {
+            --bg-primary:   #071A2D;
+            --bg-secondary: #10263E;
+            --bg-deep:      #051422;
+            --accent:       #0F4C81;
+            --accent-light: #1a6bb5;
+            --text-main:    #FFFFFF;
+            --text-muted:   #C9D3DF;
+            --border:       rgba(255,255,255,0.08);
+            --transition:   250ms cubic-bezier(0.4,0,0.2,1);
+        }
+
+        *, *::before, *::after { box-sizing: border-box; }
+
+        body {
+            background-color: var(--bg-primary);
+            color: var(--text-main);
+            font-family: 'Inter', sans-serif;
+            scroll-behavior: smooth;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        h1, h2, h3, h4, .ibm { font-family: 'IBM Plex Sans', sans-serif; }
+
+        /* ── Grid Background ── */
+        .grid-bg {
+            background-image:
+                linear-gradient(var(--border) 1px, transparent 1px),
+                linear-gradient(90deg, var(--border) 1px, transparent 1px);
+            background-size: 48px 48px;
+            mask-image: radial-gradient(ellipse 80% 70% at 50% 50%, black 40%, transparent 100%);
+        }
+
+        /* ── Candlestick overlay ── */
+        .candlestick-bg {
+            opacity: 0.028;
+            pointer-events: none;
+            position: absolute;
+            inset: 0;
+            background-image: url("data:image/svg+xml,%3Csvg width='72' height='120' viewBox='0 0 72 120' xmlns='http://www.w3.org/2000/svg'%3E%3Cg stroke='%23ffffff' stroke-width='1.2' fill='none'%3E%3Cline x1='12' y1='8' x2='12' y2='18'/%3E%3Crect x='6' y='18' width='12' height='36'/%3E%3Cline x1='12' y1='54' x2='12' y2='66'/%3E%3Cline x1='36' y1='20' x2='36' y2='32'/%3E%3Crect x='30' y='32' width='12' height='24'/%3E%3Cline x1='36' y1='56' x2='36' y2='68'/%3E%3Cline x1='60' y1='34' x2='60' y2='44'/%3E%3Crect x='54' y='44' width='12' height='30'/%3E%3Cline x1='60' y1='74' x2='60' y2='84'/%3E%3C/g%3E%3C/svg%3E");
+            background-size: 72px 120px;
+        }
+
+        /* ── Navigation ── */
+        .nav-blur {
+            background: rgba(7,26,45,0.88);
+            backdrop-filter: blur(18px);
+            -webkit-backdrop-filter: blur(18px);
+            border-bottom: 1px solid var(--border);
+        }
+        .nav-link {
+            position: relative;
+            padding-bottom: 3px;
+            color: var(--text-muted);
+            transition: color var(--transition);
+        }
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: 0; left: 0;
+            width: 0; height: 1px;
+            background: var(--accent);
+            transition: width 0.3s ease;
+        }
+        .nav-link:hover { color: #fff; }
+        .nav-link:hover::after { width: 100%; }
+
+        /* ── Hero ── */
+        .expertise-tag {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 6px 14px;
+            border: 1px solid rgba(15,76,129,0.35);
+            background: rgba(15,76,129,0.08);
+            color: var(--text-muted);
+            font-size: 10px;
+            font-weight: 600;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            transition: var(--transition);
+        }
+        .expertise-tag:hover {
+            border-color: var(--accent);
+            background: rgba(15,76,129,0.18);
+            color: #fff;
+        }
+
+        /* ── CTA row below hero ── */
+        .hero-cta-bar {
+            background: rgba(5,20,34,0.6);
+            border-top: 1px solid var(--border);
+            border-bottom: 1px solid var(--border);
+        }
+        .cta-btn-primary {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 14px 32px;
+            background: var(--accent);
+            color: #fff;
+            font-size: 10px;
+            font-weight: 700;
+            letter-spacing: 0.18em;
+            text-transform: uppercase;
+            transition: var(--transition);
+            border: 1px solid transparent;
+        }
+        .cta-btn-primary:hover { background: var(--accent-light); }
+        .cta-btn-secondary {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 13px 28px;
+            background: transparent;
+            color: var(--text-muted);
+            font-size: 10px;
+            font-weight: 700;
+            letter-spacing: 0.18em;
+            text-transform: uppercase;
+            border: 1px solid var(--border);
+            transition: var(--transition);
+        }
+        .cta-btn-secondary:hover {
+            border-color: rgba(255,255,255,0.25);
+            color: #fff;
+            background: rgba(255,255,255,0.04);
+        }
+
+        /* ── Research Cards ── */
+        .research-card {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border);
+            cursor: pointer;
+            transition: transform var(--transition), border-color var(--transition), box-shadow var(--transition);
+            overflow: hidden;
+        }
+        .research-card:hover {
+            transform: translateY(-6px);
+            border-color: rgba(15,76,129,0.6);
+            box-shadow: 0 24px 48px -16px rgba(0,0,0,0.65);
+        }
+        .research-card:hover .card-thumb { transform: scale(1.05); }
+        .card-thumb {
+            transition: transform 0.6s cubic-bezier(0.25,0.46,0.45,0.94);
+        }
+
+        /* Card meta row */
+        .card-meta-row {
+            border-top: 1px solid var(--border);
+            background: rgba(5,20,34,0.5);
+        }
+
+        /* ── Model Cards ── */
+        .model-card {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border);
+            transition: border-color var(--transition), box-shadow var(--transition);
+        }
+        .model-card:hover {
+            border-color: rgba(15,76,129,0.5);
+            box-shadow: 0 12px 32px -8px rgba(0,0,0,0.5);
+        }
+
+        /* ── Report overlay ── */
+        .reading-progress {
+            height: 2px;
+            background: var(--accent);
+            position: fixed;
+            top: 0; left: 0;
+            z-index: 200;
+            transition: width 0.08s linear;
+            box-shadow: 0 0 8px var(--accent);
+            width: 0;
+        }
+
+        /* ── Scroll Reveal ── */
+        .reveal {
+            opacity: 0;
+            transform: translateY(24px);
+            transition: opacity 0.75s ease, transform 0.75s ease;
+        }
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* ── Hero fade-in ── */
+        @keyframes heroIn {
+            from { opacity: 0; transform: translateY(18px); }
+            to   { opacity: 1; transform: translateY(0); }
+        }
+        .hero-animate { animation: heroIn 0.9s cubic-bezier(0.16,1,0.3,1) forwards; }
+        .hero-animate-delay { animation: heroIn 0.9s cubic-bezier(0.16,1,0.3,1) 0.15s both; }
+        .hero-animate-delay2 { animation: heroIn 0.9s cubic-bezier(0.16,1,0.3,1) 0.28s both; }
+
+        /* ── Scrollbar ── */
+        ::-webkit-scrollbar { width: 5px; }
+        ::-webkit-scrollbar-track { background: var(--bg-primary); }
+        ::-webkit-scrollbar-thumb { background: var(--bg-secondary); border-radius: 99px; }
+        ::-webkit-scrollbar-thumb:hover { background: var(--accent); }
+
+        /* ── Report page ── */
+        .report-section-label {
+            font-size: 9px;
+            font-weight: 700;
+            letter-spacing: 0.22em;
+            text-transform: uppercase;
+            color: var(--accent);
+            margin-bottom: 10px;
+        }
+        .report-h1 { font-family: 'IBM Plex Sans', sans-serif; font-size: clamp(28px,4vw,44px); font-weight: 700; line-height: 1.1; }
+        .report-h2 { font-family: 'IBM Plex Sans', sans-serif; font-size: 20px; font-weight: 600; margin-bottom: 14px; }
+        .report-body { color: #B8C7D6; font-size: 15px; line-height: 1.78; }
+        .report-divider { border: none; border-top: 1px solid var(--border); margin: 36px 0; }
+
+        .kpi-box {
+            padding: 20px 24px;
+            background: var(--bg-secondary);
+            border: 1px solid var(--border);
+        }
+        .kpi-label { font-size: 9px; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; color: var(--accent); margin-bottom: 6px; }
+        .kpi-value { font-family: 'IBM Plex Sans', sans-serif; font-size: 22px; font-weight: 700; }
+
+        .data-table { width: 100%; border-collapse: collapse; font-size: 13px; }
+        .data-table thead tr { border-bottom: 1px solid rgba(15,76,129,0.5); }
+        .data-table th { padding: 10px 14px; text-align: left; font-size: 9px; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; color: var(--accent); }
+        .data-table td { padding: 11px 14px; color: var(--text-muted); border-bottom: 1px solid var(--border); }
+        .data-table tr:last-child td { border-bottom: none; }
+        .data-table tr:hover td { background: rgba(15,76,129,0.05); }
+
+        .dl-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 12px 22px;
+            background: rgba(255,255,255,0.04);
+            border: 1px solid var(--border);
+            font-size: 11px;
+            font-weight: 600;
+            letter-spacing: 0.06em;
+            color: var(--text-muted);
+            transition: var(--transition);
+        }
+        .dl-btn:hover { border-color: var(--accent); color: #fff; background: rgba(15,76,129,0.12); }
+
+        /* selection */
+        ::selection { background: rgba(15,76,129,0.45); color: #fff; }
+    </style>
+</head>
+<body>
+
+<!-- ═══════════════════════════════════════════════════════
+     NAVIGATION — unchanged structure, nav-blur preserved
+═══════════════════════════════════════════════════════ -->
+<nav class="fixed top-0 w-full z-50 nav-blur" role="navigation" aria-label="Primary">
+    <div class="max-w-7xl mx-auto px-6 h-[72px] flex items-center justify-between">
+        <div class="flex items-center space-x-2.5">
+            <div class="w-8 h-8 bg-[#0F4C81] flex items-center justify-center font-bold text-[13px] ibm tracking-wide select-none">RB</div>
+            <span class="ibm font-semibold tracking-widest text-sm uppercase text-white">Research</span>
+        </div>
+
+        <div class="hidden md:flex items-center space-x-9 text-[11px] font-semibold tracking-widest">
+            <a href="#research" class="nav-link uppercase">Research</a>
+            <a href="#models"   class="nav-link uppercase">Models</a>
+            <a href="https://linkedin.com/in/rounak-bajpai" target="_blank" class="nav-link uppercase">LinkedIn</a>
+            <a href="#" class="px-5 py-2 border border-[#0F4C81] text-[#0F4C81] hover:bg-[#0F4C81] hover:text-white transition-all text-[10px] uppercase font-bold tracking-[0.16em]">Resume</a>
+        </div>
+
+        <button class="md:hidden p-2 text-[var(--text-muted)]" onclick="toggleMenu()" aria-label="Menu">
+            <i data-lucide="menu" id="menu-icon" class="w-5 h-5"></i>
+        </button>
+    </div>
+
+    <div id="mobile-menu" class="hidden md:hidden bg-[#071A2D] border-b border-white/10 px-6 py-7 space-y-5">
+        <a href="#research" onclick="toggleMenu()" class="block text-base font-semibold tracking-wide">Research</a>
+        <a href="#models"   onclick="toggleMenu()" class="block text-base font-semibold tracking-wide">Models</a>
+        <a href="https://linkedin.com/in/rounak-bajpai" target="_blank" class="block text-base font-semibold tracking-wide">LinkedIn</a>
+        <a href="#" class="block text-base font-bold text-[#0F4C81]">Resume</a>
+    </div>
+</nav>
+
+
+<!-- ═══════════════════════════════════════════════════════
+     HERO — 25% shorter, expertise tags replace paragraph,
+     CTA bar moved below hero
+═══════════════════════════════════════════════════════ -->
+<section class="relative flex items-center overflow-hidden" style="min-height: 67.5vh; padding-top: 72px;">
+    <div class="absolute inset-0 grid-bg"></div>
+    <div class="candlestick-bg"></div>
+
+    <div class="relative max-w-7xl mx-auto px-6 w-full py-14">
+        <div class="max-w-3xl">
+
+            <!-- eyebrow -->
+            <div class="hero-animate inline-flex items-center space-x-2.5 px-3.5 py-1.5 rounded-full bg-[#0F4C81]/10 border border-[#0F4C81]/25 text-[#0F4C81] text-[9px] font-bold uppercase tracking-[0.22em] mb-6">
+                <span class="relative flex h-1.5 w-1.5">
+                    <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#0F4C81] opacity-70"></span>
+                    <span class="relative inline-flex rounded-full h-1.5 w-1.5 bg-[#0F4C81]"></span>
+                </span>
+                <span>Active Publication Portal</span>
+            </div>
+
+            <!-- name -->
+            <h1 class="ibm hero-animate-delay font-bold leading-[1.08] tracking-tight mb-7" style="font-size: clamp(40px, 7vw, 80px);">
+                ROUNAK <br><span class="text-[#0F4C81]">BAJPAI</span>
+            </h1>
+
+            <!-- expertise tags — replace paragraph -->
+            <div class="hero-animate-delay2 flex flex-wrap gap-2.5">
+                <span class="expertise-tag"><i data-lucide="bar-chart-2" class="w-3 h-3 opacity-60"></i>Financial Modelling</span>
+                <span class="expertise-tag"><i data-lucide="trending-up" class="w-3 h-3 opacity-60"></i>DCF Valuation</span>
+                <span class="expertise-tag"><i data-lucide="scale" class="w-3 h-3 opacity-60"></i>Comparable Company Analysis</span>
+                <span class="expertise-tag"><i data-lucide="layers" class="w-3 h-3 opacity-60"></i>SOTP Valuation</span>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ── CTA bar below hero ─────────────────────────────── -->
+<div class="hero-cta-bar">
+    <div class="max-w-7xl mx-auto px-6 py-5 flex flex-wrap items-center gap-4">
+        <a href="#research" class="cta-btn-primary">
+            <i data-lucide="book-open" class="w-3.5 h-3.5"></i>
+            Research Library
+        </a>
+        <a href="#" class="cta-btn-secondary">
+            <i data-lucide="file-text" class="w-3.5 h-3.5"></i>
+            Resume
+        </a>
+        <a href="https://linkedin.com/in/rounak-bajpai" target="_blank" class="cta-btn-secondary">
+            <i data-lucide="linkedin" class="w-3.5 h-3.5"></i>
+            LinkedIn
+        </a>
+        <a href="mailto:rounakbajpaii@gmail.com" class="cta-btn-secondary">
+            <i data-lucide="mail" class="w-3.5 h-3.5"></i>
+            rounakbajpaii@gmail.com
+        </a>
+        <div class="ml-auto hidden md:flex items-center gap-2 text-[9px] font-bold uppercase tracking-[0.2em] text-white/20">
+            <span class="w-1 h-1 rounded-full bg-green-500 animate-pulse"></span>
+            Mumbai, India
+        </div>
+    </div>
+</div>
+
+
+<!-- ═══════════════════════════════════════════════════════
+     LATEST PUBLICATIONS (renamed from Research Reports)
+═══════════════════════════════════════════════════════ -->
+<section id="research" class="py-24 border-t border-white/5 reveal">
+    <div class="max-w-7xl mx-auto px-6">
+
+        <div class="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-4">
+            <div>
+                <p class="text-[9px] uppercase tracking-[0.4em] text-[#0F4C81] font-black mb-3">Publication Archive</p>
+                <h2 class="ibm font-bold tracking-tight" style="font-size: clamp(24px,3.5vw,40px);">Latest Publications</h2>
+            </div>
+            <div class="text-[#C9D3DF]/35 text-[9px] font-bold uppercase tracking-widest flex items-center gap-2 border border-white/5 px-4 py-2 self-start md:self-auto">
+                <span class="w-1.5 h-1.5 rounded-full bg-green-500/70"></span>
+                October 2024
+            </div>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6" id="research-grid">
+
+            <!-- ── Card 1: Marico ── -->
+            <div class="research-card group" onclick="openReport('marico')" role="button" tabindex="0" aria-label="Read Marico Limited report">
+                <!-- thumbnail -->
+                <div class="relative overflow-hidden" style="aspect-ratio:16/9; background:#051E35;">
+                    <div class="absolute inset-0 bg-gradient-to-t from-[#071A2D] via-[#071A2D]/40 to-transparent z-10"></div>
+                    <div class="absolute inset-0 bg-gradient-to-r from-[#071A2D]/30 to-transparent z-10"></div>
+                    <!-- publication type badge -->
+                    <div class="absolute top-5 left-5 z-20">
+                        <span class="px-2.5 py-1 bg-[#0F4C81]/90 text-[9px] uppercase tracking-[0.18em] font-bold">Initiating Coverage</span>
+                    </div>
+                    <!-- arrow -->
+                    <div class="absolute top-5 right-5 z-20 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                        <div class="w-8 h-8 bg-[#0F4C81] flex items-center justify-center">
+                            <i data-lucide="arrow-right" class="w-4 h-4"></i>
+                        </div>
+                    </div>
+                    <img
+                        src="https://images.pexels.com/photos/35977004/pexels-photo-35977004.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200"
+                        alt="Marico — FMCG consumer goods"
+                        class="card-thumb w-full h-full object-cover opacity-55"
+                        loading="lazy"
+                    >
+                    <!-- bottom text -->
+                    <div class="absolute bottom-0 left-0 right-0 z-20 p-5">
+                        <div class="flex items-end justify-between">
+                            <div>
+                                <h3 class="ibm text-xl font-bold group-hover:text-[#6BAED6] transition-colors duration-250 mb-0.5">Marico Limited</h3>
+                                <p class="text-[11px] text-[#C9D3DF]/60 font-medium tracking-wide">FMCG &nbsp;·&nbsp; Consumer Goods</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- meta row -->
+                <div class="card-meta-row px-5 py-3 flex items-center justify-between">
+                    <span class="text-[9px] uppercase tracking-[0.18em] font-bold text-[#C9D3DF]/40">NSE: MARICO</span>
+                    <div class="flex items-center gap-4">
+                        <span class="text-[9px] uppercase tracking-[0.14em] text-[#C9D3DF]/40">10 min read</span>
+                        <span class="text-[9px] uppercase tracking-[0.14em] font-bold text-[#0F4C81]">Accumulate</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ── Card 2: TD Power Systems ── -->
+            <div class="research-card group" onclick="openReport('tdps')" role="button" tabindex="0" aria-label="Read TD Power Systems report">
+                <div class="relative overflow-hidden" style="aspect-ratio:16/9; background:#051E35;">
+                    <div class="absolute inset-0 bg-gradient-to-t from-[#071A2D] via-[#071A2D]/40 to-transparent z-10"></div>
+                    <div class="absolute inset-0 bg-gradient-to-r from-[#071A2D]/30 to-transparent z-10"></div>
+                    <div class="absolute top-5 left-5 z-20">
+                        <span class="px-2.5 py-1 bg-[#0F4C81]/90 text-[9px] uppercase tracking-[0.18em] font-bold">Deep Dive</span>
+                    </div>
+                    <div class="absolute top-5 right-5 z-20 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                        <div class="w-8 h-8 bg-[#0F4C81] flex items-center justify-center">
+                            <i data-lucide="arrow-right" class="w-4 h-4"></i>
+                        </div>
+                    </div>
+                    <img
+                        src="https://images.pexels.com/photos/35596450/pexels-photo-35596450.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200"
+                        alt="TD Power Systems — industrial power generation"
+                        class="card-thumb w-full h-full object-cover opacity-55"
+                        loading="lazy"
+                    >
+                    <div class="absolute bottom-0 left-0 right-0 z-20 p-5">
+                        <h3 class="ibm text-xl font-bold group-hover:text-[#6BAED6] transition-colors duration-250 mb-0.5">TD Power Systems</h3>
+                        <p class="text-[11px] text-[#C9D3DF]/60 font-medium tracking-wide">Industrials &nbsp;·&nbsp; Power Gen Equipment</p>
+                    </div>
+                </div>
+                <div class="card-meta-row px-5 py-3 flex items-center justify-between">
+                    <span class="text-[9px] uppercase tracking-[0.18em] font-bold text-[#C9D3DF]/40">NSE: TDPOWERSYS</span>
+                    <div class="flex items-center gap-4">
+                        <span class="text-[9px] uppercase tracking-[0.14em] text-[#C9D3DF]/40">12 min read</span>
+                        <span class="text-[9px] uppercase tracking-[0.14em] font-bold text-green-400">Buy</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ── Card 3: Tata Elxsi ── -->
+            <div class="research-card group" onclick="openReport('tata-elxsi')" role="button" tabindex="0" aria-label="Read Tata Elxsi report">
+                <div class="relative overflow-hidden" style="aspect-ratio:16/9; background:#051E35;">
+                    <div class="absolute inset-0 bg-gradient-to-t from-[#071A2D] via-[#071A2D]/40 to-transparent z-10"></div>
+                    <div class="absolute inset-0 bg-gradient-to-r from-[#071A2D]/30 to-transparent z-10"></div>
+                    <div class="absolute top-5 left-5 z-20">
+                        <span class="px-2.5 py-1 bg-[#0F4C81]/90 text-[9px] uppercase tracking-[0.18em] font-bold">Structural Story</span>
+                    </div>
+                    <div class="absolute top-5 right-5 z-20 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                        <div class="w-8 h-8 bg-[#0F4C81] flex items-center justify-center">
+                            <i data-lucide="arrow-right" class="w-4 h-4"></i>
+                        </div>
+                    </div>
+                    <img
+                        src="https://images.pexels.com/photos/10029877/pexels-photo-10029877.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200"
+                        alt="Tata Elxsi — technology ER&D"
+                        class="card-thumb w-full h-full object-cover opacity-55"
+                        loading="lazy"
+                    >
+                    <div class="absolute bottom-0 left-0 right-0 z-20 p-5">
+                        <h3 class="ibm text-xl font-bold group-hover:text-[#6BAED6] transition-colors duration-250 mb-0.5">Tata Elxsi</h3>
+                        <p class="text-[11px] text-[#C9D3DF]/60 font-medium tracking-wide">Technology &nbsp;·&nbsp; ER&amp;D Services</p>
+                    </div>
+                </div>
+                <div class="card-meta-row px-5 py-3 flex items-center justify-between">
+                    <span class="text-[9px] uppercase tracking-[0.18em] font-bold text-[#C9D3DF]/40">NSE: TATAELXSI</span>
+                    <div class="flex items-center gap-4">
+                        <span class="text-[9px] uppercase tracking-[0.14em] text-[#C9D3DF]/40">15 min read</span>
+                        <span class="text-[9px] uppercase tracking-[0.14em] font-bold text-yellow-400">Hold</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ── Card 4: Ashok Leyland ── -->
+            <div class="research-card group" onclick="openReport('ashok-leyland')" role="button" tabindex="0" aria-label="Read Ashok Leyland investment note">
+                <div class="relative overflow-hidden" style="aspect-ratio:16/9; background:#051E35;">
+                    <div class="absolute inset-0 bg-gradient-to-t from-[#071A2D] via-[#071A2D]/40 to-transparent z-10"></div>
+                    <div class="absolute inset-0 bg-gradient-to-r from-[#071A2D]/30 to-transparent z-10"></div>
+                    <div class="absolute top-5 left-5 z-20">
+                        <span class="px-2.5 py-1 bg-[#0F4C81]/90 text-[9px] uppercase tracking-[0.18em] font-bold">Investment Note</span>
+                    </div>
+                    <div class="absolute top-5 right-5 z-20 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                        <div class="w-8 h-8 bg-[#0F4C81] flex items-center justify-center">
+                            <i data-lucide="arrow-right" class="w-4 h-4"></i>
+                        </div>
+                    </div>
+                    <img
+                        src="https://images.pexels.com/photos/29057946/pexels-photo-29057946.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200"
+                        alt="Ashok Leyland — commercial vehicles"
+                        class="card-thumb w-full h-full object-cover opacity-55"
+                        loading="lazy"
+                    >
+                    <div class="absolute bottom-0 left-0 right-0 z-20 p-5">
+                        <h3 class="ibm text-xl font-bold group-hover:text-[#6BAED6] transition-colors duration-250 mb-0.5">Ashok Leyland</h3>
+                        <p class="text-[11px] text-[#C9D3DF]/60 font-medium tracking-wide">Automobile &nbsp;·&nbsp; Commercial Vehicles</p>
+                    </div>
+                </div>
+                <div class="card-meta-row px-5 py-3 flex items-center justify-between">
+                    <span class="text-[9px] uppercase tracking-[0.18em] font-bold text-[#C9D3DF]/40">NSE: ASHOKLEY</span>
+                    <div class="flex items-center gap-4">
+                        <span class="text-[9px] uppercase tracking-[0.14em] text-[#C9D3DF]/40">7 min read</span>
+                        <span class="text-[9px] uppercase tracking-[0.14em] font-bold text-[#0F4C81]">Tactical Note</span>
+                    </div>
+                </div>
+            </div>
+
+        </div><!-- /grid -->
+    </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════════════════════
+     VALUATION MODELS
+═══════════════════════════════════════════════════════ -->
+<section id="models" class="py-24 reveal" style="background: rgba(16,38,62,0.25); border-top: 1px solid var(--border);">
+    <div class="max-w-7xl mx-auto px-6">
+
+        <div class="flex items-center gap-5 mb-12">
+            <div class="h-px flex-1 bg-white/8"></div>
+            <p class="text-[9px] uppercase tracking-[0.4em] font-bold text-[#0F4C81]">Financial Frameworks</p>
+            <div class="h-px flex-1 bg-white/8"></div>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+
+            <!-- Model 1 -->
+            <div class="model-card p-7 flex flex-col h-full">
+                <div class="flex items-start justify-between mb-5">
+                    <div class="w-10 h-10 bg-green-500/10 flex items-center justify-center">
+                        <i data-lucide="file-spreadsheet" class="text-green-400 w-5 h-5"></i>
+                    </div>
+                    <span class="text-[9px] font-bold uppercase tracking-[0.16em] text-[#C9D3DF]/30 mt-1">DCF Model</span>
+                </div>
+                <h4 class="ibm text-[17px] font-semibold mb-1.5">Waaree Renewable</h4>
+                <p class="text-[9px] font-bold uppercase tracking-[0.16em] text-[#0F4C81] mb-3">Discounted Cash Flow</p>
+                <p class="text-[13px] text-[#C9D3DF]/55 leading-relaxed flex-grow mb-6">
+                    Comprehensive DCF with granular revenue drivers, WACC build-up, sensitivity tables and terminal value bridge for the solar EPC business.
+                </p>
+                <div class="flex items-center justify-between pt-4 border-t border-white/5">
+                    <span class="text-[9px] font-bold uppercase tracking-widest text-[#C9D3DF]/30">Excel · 2.4 MB</span>
+                    <a href="#" class="flex items-center gap-1.5 text-[10px] font-bold uppercase tracking-[0.12em] text-[#0F4C81] hover:text-white transition-colors">
+                        <i data-lucide="download" class="w-3.5 h-3.5"></i> Download
+                    </a>
+                </div>
+            </div>
+
+            <!-- Model 2 -->
+            <div class="model-card p-7 flex flex-col h-full">
+                <div class="flex items-start justify-between mb-5">
+                    <div class="w-10 h-10 bg-blue-500/10 flex items-center justify-center">
+                        <i data-lucide="layout-grid" class="text-blue-400 w-5 h-5"></i>
+                    </div>
+                    <span class="text-[9px] font-bold uppercase tracking-[0.16em] text-[#C9D3DF]/30 mt-1">3-Statement</span>
+                </div>
+                <h4 class="ibm text-[17px] font-semibold mb-1.5">Waaree Renewable</h4>
+                <p class="text-[9px] font-bold uppercase tracking-[0.16em] text-[#0F4C81] mb-3">Integrated Financial Model</p>
+                <p class="text-[13px] text-[#C9D3DF]/55 leading-relaxed flex-grow mb-6">
+                    Fully integrated Income Statement, Balance Sheet and Cash Flow Statement with circular reference resolution and debt schedule.
+                </p>
+                <div class="flex items-center justify-between pt-4 border-t border-white/5">
+                    <span class="text-[9px] font-bold uppercase tracking-widest text-[#C9D3DF]/30">Excel · 1.8 MB</span>
+                    <a href="#" class="flex items-center gap-1.5 text-[10px] font-bold uppercase tracking-[0.12em] text-[#0F4C81] hover:text-white transition-colors">
+                        <i data-lucide="download" class="w-3.5 h-3.5"></i> Download
+                    </a>
+                </div>
+            </div>
+
+            <!-- Model 3 -->
+            <div class="model-card p-7 flex flex-col h-full">
+                <div class="flex items-start justify-between mb-5">
+                    <div class="w-10 h-10 bg-orange-500/10 flex items-center justify-center">
+                        <i data-lucide="trending-up" class="text-orange-400 w-5 h-5"></i>
+                    </div>
+                    <span class="text-[9px] font-bold uppercase tracking-[0.16em] text-[#C9D3DF]/30 mt-1">DCF + Comps</span>
+                </div>
+                <h4 class="ibm text-[17px] font-semibold mb-1.5">Indian Energy Exchange</h4>
+                <p class="text-[9px] font-bold uppercase tracking-[0.16em] text-[#0F4C81] mb-3">Peer Multiple &amp; DCF Valuation</p>
+                <p class="text-[13px] text-[#C9D3DF]/55 leading-relaxed flex-grow mb-6">
+                    Valuation of IEX using EV/EBITDA comps and DCF, accounting for regulatory overhang from Real-Time Market volume shifts.
+                </p>
+                <div class="flex items-center justify-between pt-4 border-t border-white/5">
+                    <span class="text-[9px] font-bold uppercase tracking-widest text-[#C9D3DF]/30">Excel · 3.1 MB</span>
+                    <a href="#" class="flex items-center gap-1.5 text-[10px] font-bold uppercase tracking-[0.12em] text-[#0F4C81] hover:text-white transition-colors">
+                        <i data-lucide="download" class="w-3.5 h-3.5"></i> Download
+                    </a>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════════════════════
+     ABOUT & CONTACT
+═══════════════════════════════════════════════════════ -->
+<section class="py-24 border-t border-white/5 reveal">
+    <div class="max-w-7xl mx-auto px-6 grid grid-cols-1 md:grid-cols-2 gap-16">
+
+        <div>
+            <p class="text-[9px] uppercase tracking-[0.35em] text-[#0F4C81] font-black mb-5">About</p>
+            <p class="text-[15px] leading-[1.78] text-[#C9D3DF] mb-4">
+                Aspiring Equity Research Analyst focused on fundamental bottom-up research and financial modelling. Dedicated to uncovering value through rigorous analysis and data-driven insights on Indian listed companies.
+            </p>
+            <p class="text-[13px] leading-relaxed text-[#C9D3DF]/45">
+                Based in Mumbai, India. Actively seeking opportunities in Equity Research, Asset Management, and Investment Banking.
+            </p>
+        </div>
+
+        <div>
+            <p class="text-[9px] uppercase tracking-[0.35em] text-[#0F4C81] font-black mb-5">Network</p>
+            <div class="space-y-4">
+                <a href="mailto:rounakbajpaii@gmail.com" class="flex items-center gap-4 group">
+                    <div class="w-10 h-10 bg-white/5 flex items-center justify-center group-hover:bg-[#0F4C81] transition-colors shrink-0">
+                        <i data-lucide="mail" class="w-4 h-4"></i>
+                    </div>
+                    <div>
+                        <div class="text-[9px] uppercase tracking-widest text-[#C9D3DF]/35 font-bold mb-0.5">Email</div>
+                        <div class="text-[14px] font-medium group-hover:text-[#6BAED6] transition-colors">rounakbajpaii@gmail.com</div>
+                    </div>
+                </a>
+                <a href="https://linkedin.com/in/rounak-bajpai" target="_blank" class="flex items-center gap-4 group">
+                    <div class="w-10 h-10 bg-white/5 flex items-center justify-center group-hover:bg-[#0F4C81] transition-colors shrink-0">
+                        <i data-lucide="linkedin" class="w-4 h-4"></i>
+                    </div>
+                    <div>
+                        <div class="text-[9px] uppercase tracking-widest text-[#C9D3DF]/35 font-bold mb-0.5">LinkedIn</div>
+                        <div class="text-[14px] font-medium group-hover:text-[#6BAED6] transition-colors">rounak-bajpai</div>
+                    </div>
+                </a>
+            </div>
+        </div>
+
+    </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════════════════════
+     FOOTER
+═══════════════════════════════════════════════════════ -->
+<footer class="py-10 border-t border-white/5" style="background:#051422;">
+    <div class="max-w-7xl mx-auto px-6 flex flex-col md:flex-row justify-between items-start md:items-center gap-6">
+        <p class="text-[10px] text-[#C9D3DF]/28 max-w-xl leading-relaxed">
+            DISCLAIMER: All research reports and financial models published on this portal are for educational purposes only and do not constitute investment advice. The author is not a SEBI registered investment advisor. Information is derived from publicly available data and personal analysis.
+        </p>
+        <p class="text-[10px] text-[#C9D3DF]/28 font-medium shrink-0">
+            &copy; 2024 Rounak Bajpai
+        </p>
+    </div>
+</footer>
+
+
+<!-- ═══════════════════════════════════════════════════════
+     REPORT OVERLAY (SPA layer)
+═══════════════════════════════════════════════════════ -->
+<div id="report-view" class="fixed inset-0 z-[60] bg-[#071A2D] hidden overflow-y-auto" role="dialog" aria-modal="true">
+    <div class="reading-progress" id="progress-bar"></div>
+
+    <!-- sticky header -->
+    <div class="sticky top-0 w-full nav-blur z-50">
+        <div class="max-w-7xl mx-auto px-6 h-14 flex items-center justify-between">
+            <button onclick="closeReport()" class="flex items-center gap-2 text-[11px] font-semibold tracking-wide text-[#C9D3DF]/70 hover:text-white transition-colors">
+                <i data-lucide="arrow-left" class="w-4 h-4"></i> Back to Archive
+            </button>
+            <div class="flex items-center gap-4">
+                <span id="read-time" class="text-[9px] font-bold uppercase tracking-[0.18em] text-[#C9D3DF]/40">8 MIN READ</span>
+                <button class="px-4 py-2 bg-[#0F4C81] hover:bg-[#1a6bb5] transition-colors text-[9px] font-bold uppercase tracking-[0.16em]">
+                    Download PDF
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- content container -->
+    <div class="max-w-3xl mx-auto px-6 py-16" id="report-content"></div>
+</div>
+
+
+<!-- ═══════════════════════════════════════════════════════
+     JAVASCRIPT
+═══════════════════════════════════════════════════════ -->
+<script>
+lucide.createIcons();
+
+/* ── Mobile menu ── */
+function toggleMenu() {
+    const menu = document.getElementById('mobile-menu');
+    const icon = document.getElementById('menu-icon');
+    menu.classList.toggle('hidden');
+    icon.setAttribute('data-lucide', menu.classList.contains('hidden') ? 'menu' : 'x');
+    lucide.createIcons();
+}
+
+/* ── Scroll reveal ── */
+function runReveal() {
+    document.querySelectorAll('.reveal').forEach(el => {
+        if (el.getBoundingClientRect().top < window.innerHeight - 100) {
+            el.classList.add('active');
+        }
+    });
+}
+window.addEventListener('scroll', runReveal, { passive: true });
+setTimeout(runReveal, 100);
+
+/* ── Report content data ── */
+const reports = {
+
+    'marico': {
+        readTime: '10 MIN READ',
+        content: `
+        <div class="mb-10">
+            <p class="report-section-label">Initiating Coverage &nbsp;·&nbsp; FMCG</p>
+            <h1 class="report-h1 mb-3">Marico Limited</h1>
+            <p style="color:#8A9BB0; font-size:15px; font-style:italic; font-family:'IBM Plex Sans', sans-serif;">
+                Navigating Domestic Volatility through Premiumisation and Digital Brands
+            </p>
+        </div>
+
+        <div class="grid grid-cols-3 gap-0 mb-10" style="border:1px solid var(--border);">
+            <div class="kpi-box" style="border-right:1px solid var(--border);">
+                <div class="kpi-label">Rating</div>
+                <div class="kpi-value text-[#0F4C81]">Accumulate</div>
+            </div>
+            <div class="kpi-box" style="border-right:1px solid var(--border);">
+                <div class="kpi-label">Target Price</div>
+                <div class="kpi-value">₹615</div>
+            </div>
+            <div class="kpi-box">
+                <div class="kpi-label">Implied Upside</div>
+                <div class="kpi-value text-green-400">+14.2%</div>
+            </div>
+        </div>
+
+        <hr class="report-divider">
+
+        <h2 class="report-h2">Investment Summary</h2>
+        <p class="report-body mb-6">
+            Marico remains a dominant force in the Indian FMCG landscape, with its core franchises — Parachute and Saffola — holding leadership positions in their respective categories. The company's pivot towards a diversified portfolio including digital-first brands (Beardo, Just Herbs, True Roots) is expected to drive long-term margin expansion beyond the core hair oil and edible oil segments.
+        </p>
+        <p class="report-body mb-6">
+            We initiate coverage with an <strong style="color:#fff;">Accumulate</strong> rating and a 12-month price target of <strong style="color:#fff;">₹615</strong>, implying a 14.2% upside from the current market price. Our thesis is anchored on (1) volume recovery in Parachute as copra prices moderate, (2) accelerating Food and Premium Personal Care revenue mix, and (3) a resilient international business despite near-term Bangladesh headwinds.
+        </p>
+
+        <hr class="report-divider">
+
+        <h2 class="report-h2">Business Overview</h2>
+        <p class="report-body mb-6">
+            Marico's revenue is split between Domestic (~75%) and International (~25%) operations. The domestic business is led by Parachute Coconut Oil (market share: ~59% in Rigid segment) and Saffola edible oils. The International business spans Bangladesh, Vietnam, Middle East and South Africa, with Bangladesh being the largest contributor at ~12% of consolidated revenue.
+        </p>
+
+        <hr class="report-divider">
+
+        <h2 class="report-h2">Financial Snapshot</h2>
+        <div style="border:1px solid var(--border); margin-bottom:32px; overflow-x:auto;">
+            <table class="data-table">
+                <thead>
+                    <tr>
+                        <th>Metric</th>
+                        <th>FY22A</th>
+                        <th>FY23A</th>
+                        <th>FY24E</th>
+                        <th>FY25E</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr><td>Revenue (₹ Cr)</td><td>9,502</td><td>11,423</td><td>9,764</td><td>10,540</td></tr>
+                    <tr><td>EBITDA (₹ Cr)</td><td>1,643</td><td>1,817</td><td>1,904</td><td>2,095</td></tr>
+                    <tr><td>EBITDA Margin</td><td>17.3%</td><td>15.9%</td><td>19.5%</td><td>19.9%</td></tr>
+                    <tr><td>PAT (₹ Cr)</td><td>1,248</td><td>1,349</td><td>1,432</td><td>1,590</td></tr>
+                    <tr><td>EPS (₹)</td><td>9.7</td><td>10.4</td><td>11.1</td><td>12.3</td></tr>
+                    <tr><td>P/E (x)</td><td>57.2x</td><td>53.1x</td><td>48.6x</td><td>44.1x</td></tr>
+                    <tr><td>ROE</td><td>35.1%</td><td>37.4%</td><td>34.8%</td><td>36.2%</td></tr>
+                </tbody>
+            </table>
+        </div>
+
+        <hr class="report-divider">
+
+        <h2 class="report-h2">Valuation</h2>
+        <p class="report-body mb-6">
+            Our DCF-based valuation (WACC: 12.5%, Terminal growth: 5%) implies a fair value of ₹598. Blending with a peer P/E multiple approach (45x FY25E EPS) yields a target price of <strong style="color:#fff;">₹615</strong>. The premium over the sector is justified by Marico's industry-leading ROE, strong FCF yield and consistent dividend track record.
+        </p>
+
+        <hr class="report-divider">
+
+        <h2 class="report-h2">Key Risks</h2>
+        <ul style="padding-left:0; list-style:none; margin-bottom:32px;" class="space-y-3">
+            <li class="report-body flex gap-3"><span style="color:#0F4C81; font-weight:700;">01</span> Sharp volatility in Copra prices, the primary raw material for Parachute.</li>
+            <li class="report-body flex gap-3"><span style="color:#0F4C81; font-weight:700;">02</span> Sustained slowdown in rural consumption impacting volume growth.</li>
+            <li class="report-body flex gap-3"><span style="color:#0F4C81; font-weight:700;">03</span> Geopolitical instability in Bangladesh affecting international operations.</li>
+            <li class="report-body flex gap-3"><span style="color:#0F4C81; font-weight:700;">04</span> Intensifying competition from regional players and private labels.</li>
+        </ul>
+
+        <hr class="report-divider">
+
+        <div class="flex flex-wrap gap-3 mt-8">
+            <button class="dl-btn"><i data-lucide="file-text" class="w-4 h-4" style="color:#0F4C81;"></i> Full PDF Report</button>
+            <button class="dl-btn"><i data-lucide="file-spreadsheet" class="w-4 h-4" style="color:#22c55e;"></i> Financial Model</button>
+        </div>
+        `
+    },
+
+    'tdps': {
+        readTime: '12 MIN READ',
+        content: `
+        <div class="mb-10">
+            <p class="report-section-label">Deep Dive &nbsp;·&nbsp; Industrials</p>
+            <h1 class="report-h1 mb-3">TD Power Systems</h1>
+            <p style="color:#8A9BB0; font-size:15px; font-style:italic; font-family:'IBM Plex Sans', sans-serif;">
+                Capitalising on Global Energy Transition and Infrastructure Capex
+            </p>
+        </div>
+
+        <div class="grid grid-cols-3 gap-0 mb-10" style="border:1px solid var(--border);">
+            <div class="kpi-box" style="border-right:1px solid var(--border);">
+                <div class="kpi-label">Rating</div>
+                <div class="kpi-value text-green-400">Buy</div>
+            </div>
+            <div class="kpi-box" style="border-right:1px solid var(--border);">
+                <div class="kpi-label">Target Price</div>
+                <div class="kpi-value">₹345</div>
+            </div>
+            <div class="kpi-box">
+                <div class="kpi-label">Implied Upside</div>
+                <div class="kpi-value text-green-400">+22.5%</div>
+            </div>
+        </div>
+
+        <hr class="report-divider">
+
+        <h2 class="report-h2">Investment Thesis</h2>
+        <p class="report-body mb-6">
+            TD Power Systems (TDPS) is a specialised manufacturer of AC generators and steam turbines. The company is uniquely positioned to benefit from: (1) Government-led infrastructure capex in the power sector, (2) rising global demand for reliable power backup, and (3) a high entry-barrier product portfolio built over decades of technical collaboration with global OEMs.
+        </p>
+
+        <hr class="report-divider">
+
+        <h2 class="report-h2">Financial Snapshot</h2>
+        <div style="border:1px solid var(--border); margin-bottom:32px; overflow-x:auto;">
+            <table class="data-table">
+                <thead>
+                    <tr><th>Metric</th><th>FY22A</th><th>FY23A</th><th>FY24E</th><th>FY25E</th></tr>
+                </thead>
+                <tbody>
+                    <tr><td>Revenue (₹ Cr)</td><td>563</td><td>742</td><td>940</td><td>1,125</td></tr>
+                    <tr><td>EBITDA Margin</td><td>11.4%</td><td>13.1%</td><td>15.2%</td><td>16.4%</td></tr>
+                    <tr><td>PAT (₹ Cr)</td><td>38</td><td>68</td><td>101</td><td>134</td></tr>
+                    <tr><td>EPS (₹)</td><td>4.8</td><td>8.6</td><td>12.8</td><td>17.0</td></tr>
+                    <tr><td>P/E (x)</td><td>58.5x</td><td>32.8x</td><td>22.1x</td><td>16.7x</td></tr>
+                    <tr><td>ROE</td><td>9.6%</td><td>15.8%</td><td>20.3%</td><td>23.1%</td></tr>
+                </tbody>
+            </table>
+        </div>
+
+        <hr class="report-divider">
+
+        <h2 class="report-h2">Competitive Moat</h2>
+        <p class="report-body mb-6">
+            Technical collaboration with global OEMs (including ABB, Siemens heritage tie-ups) and decades of specialised manufacturing know-how create a durable competitive moat. The asset-light steam turbine segment offers superior capital allocation dynamics compared to heavy engineering peers.
+        </p>
+
+        <hr class="report-divider">
+
+        <h2 class="report-h2">Key Risks</h2>
+        <ul style="padding-left:0; list-style:none;" class="space-y-3 mb-8">
+            <li class="report-body flex gap-3"><span style="color:#0F4C81; font-weight:700;">01</span> Lumpy order inflows leading to revenue volatility quarter-to-quarter.</li>
+            <li class="report-body flex gap-3"><span style="color:#0F4C81; font-weight:700;">02</span> Slowdown in government infrastructure spending affecting capex cycle.</li>
+            <li class="report-body flex gap-3"><span style="color:#0F4C81; font-weight:700;">03</span> Currency risk on export revenues (~30% of total).</li>
+        </ul>
+
+        <div class="flex flex-wrap gap-3 mt-8">
+            <button class="dl-btn"><i data-lucide="file-text" class="w-4 h-4" style="color:#0F4C81;"></i> Full PDF Report</button>
+            <button class="dl-btn"><i data-lucide="file-spreadsheet" class="w-4 h-4" style="color:#22c55e;"></i> Financial Model</button>
+        </div>
+        `
+    },
+
+    'tata-elxsi': {
+        readTime: '15 MIN READ',
+        content: `
+        <div class="mb-10">
+            <p class="report-section-label">Structural Story &nbsp;·&nbsp; Technology</p>
+            <h1 class="report-h1 mb-3">Tata Elxsi</h1>
+            <p style="color:#8A9BB0; font-size:15px; font-style:italic; font-family:'IBM Plex Sans', sans-serif;">
+                Leading the ER&amp;D Wave through Software Defined Vehicles (SDV)
+            </p>
+        </div>
+
+        <div class="grid grid-cols-3 gap-0 mb-10" style="border:1px solid var(--border);">
+            <div class="kpi-box" style="border-right:1px solid var(--border);">
+                <div class="kpi-label">Rating</div>
+                <div class="kpi-value text-yellow-400">Hold</div>
+            </div>
+            <div class="kpi-box" style="border-right:1px solid var(--border);">
+                <div class="kpi-label">Target Price</div>
+                <div class="kpi-value">₹7,800</div>
+            </div>
+            <div class="kpi-box">
+                <div class="kpi-label">FY25E P/E</div>
+                <div class="kpi-value">62.4x</div>
+            </div>
+        </div>
+
+        <hr class="report-divider">
+
+        <h2 class="report-h2">Execution Excellence</h2>
+        <p class="report-body mb-6">
+            Tata Elxsi's vertical concentration in Transportation, Media and Healthcare continues to yield industry-leading EBITDA margins (>30%). Their early-mover position in the EV and ADAS ecosystem has created a high entry barrier, with key client relationships including major global OEMs in Europe and North America.
+        </p>
+
+        <hr class="report-divider">
+
+        <h2 class="report-h2">Financial Snapshot</h2>
+        <div style="border:1px solid var(--border); margin-bottom:32px; overflow-x:auto;">
+            <table class="data-table">
+                <thead>
+                    <tr><th>Metric</th><th>FY22A</th><th>FY23A</th><th>FY24A</th><th>FY25E</th></tr>
+                </thead>
+                <tbody>
+                    <tr><td>Revenue (₹ Cr)</td><td>2,437</td><td>3,342</td><td>3,742</td><td>4,120</td></tr>
+                    <tr><td>EBITDA Margin</td><td>28.4%</td><td>31.2%</td><td>30.5%</td><td>31.0%</td></tr>
+                    <tr><td>PAT (₹ Cr)</td><td>552</td><td>819</td><td>892</td><td>964</td></tr>
+                    <tr><td>EPS (₹)</td><td>88.8</td><td>131.7</td><td>143.5</td><td>155.0</td></tr>
+                    <tr><td>P/E (x)</td><td>88.1x</td><td>59.5x</td><td>54.6x</td><td>50.3x</td></tr>
+                    <tr><td>ROE</td><td>38.4%</td><td>42.6%</td><td>40.1%</td><td>39.8%</td></tr>
+                </tbody>
+            </table>
+        </div>
+
+        <hr class="report-divider">
+
+        <h2 class="report-h2">Key Risks</h2>
+        <ul style="padding-left:0; list-style:none;" class="space-y-3 mb-8">
+            <li class="report-body flex gap-3"><span style="color:#0F4C81; font-weight:700;">01</span> Global OEM capex freeze impacting ER&amp;D outsourcing budgets.</li>
+            <li class="report-body flex gap-3"><span style="color:#0F4C81; font-weight:700;">02</span> Client concentration risk — top 5 clients ~45% of revenue.</li>
+            <li class="report-body flex gap-3"><span style="color:#0F4C81; font-weight:700;">03</span> Premium valuation limits margin of safety; de-rating risk on miss.</li>
+        </ul>
+
+        <div class="flex flex-wrap gap-3 mt-8">
+            <button class="dl-btn"><i data-lucide="file-text" class="w-4 h-4" style="color:#0F4C81;"></i> Full PDF Report</button>
+            <button class="dl-btn"><i data-lucide="file-spreadsheet" class="w-4 h-4" style="color:#22c55e;"></i> Financial Model</button>
+        </div>
+        `
+    },
+
+    'ashok-leyland': {
+        readTime: '7 MIN READ',
+        content: `
+        <div class="mb-10" style="border-left:3px solid #0F4C81; padding-left:24px;">
+            <p class="report-section-label">Investment Note &nbsp;·&nbsp; Automobile</p>
+            <h1 class="report-h1 mb-3">Ashok Leyland</h1>
+            <p style="color:#8A9BB0; font-size:15px; font-style:italic; font-family:'IBM Plex Sans', sans-serif;">
+                CV Cycle Recovery and the Strategic Push into Electric Mobility
+            </p>
+        </div>
+
+        <div class="grid grid-cols-3 gap-0 mb-10" style="border:1px solid var(--border);">
+            <div class="kpi-box" style="border-right:1px solid var(--border);">
+                <div class="kpi-label">Note Type</div>
+                <div class="kpi-value text-[#0F4C81]" style="font-size:17px;">Tactical</div>
+            </div>
+            <div class="kpi-box" style="border-right:1px solid var(--border);">
+                <div class="kpi-label">Sector</div>
+                <div class="kpi-value" style="font-size:17px;">M&amp;HCV</div>
+            </div>
+            <div class="kpi-box">
+                <div class="kpi-label">Coverage</div>
+                <div class="kpi-value" style="font-size:17px;">NSE: ASHOKLEY</div>
+            </div>
+        </div>
+
+        <hr class="report-divider">
+
+        <h2 class="report-h2">One-Page Summary</h2>
+
+        <div style="display:grid; grid-template-columns:1fr 1fr; gap:24px; margin-bottom:32px;">
+            <div style="padding:24px; background:rgba(15,76,129,0.07); border:1px solid rgba(15,76,129,0.2);">
+                <p style="font-size:9px; font-weight:700; letter-spacing:0.2em; text-transform:uppercase; color:#0F4C81; margin-bottom:14px;">The Bull Case</p>
+                <ul class="space-y-3">
+                    <li class="report-body flex gap-2.5" style="font-size:13px;"><i data-lucide="check" style="width:14px; height:14px; color:#22c55e; flex-shrink:0; margin-top:3px;"></i> Market share gains in the M&amp;HCV segment post BS-VI transition.</li>
+                    <li class="report-body flex gap-2.5" style="font-size:13px;"><i data-lucide="check" style="width:14px; height:14px; color:#22c55e; flex-shrink:0; margin-top:3px;"></i> Switch Mobility (EV arm) — potential valuation unlock via listing.</li>
+                    <li class="report-body flex gap-2.5" style="font-size:13px;"><i data-lucide="check" style="width:14px; height:14px; color:#22c55e; flex-shrink:0; margin-top:3px;"></i> Strong operating leverage as volumes recover to peak cycle levels.</li>
+                    <li class="report-body flex gap-2.5" style="font-size:13px;"><i data-lucide="check" style="width:14px; height:14px; color:#22c55e; flex-shrink:0; margin-top:3px;"></i> Defence and LCV segment providing revenue diversification.</li>
+                </ul>
+            </div>
+            <div style="padding:24px; background:rgba(239,68,68,0.05); border:1px solid rgba(239,68,68,0.15);">
+                <p style="font-size:9px; font-weight:700; letter-spacing:0.2em; text-transform:uppercase; color:#ef4444; margin-bottom:14px;">Key Monitoring Factors</p>
+                <ul class="space-y-3">
+                    <li class="report-body flex gap-2.5" style="font-size:13px;"><i data-lucide="alert-circle" style="width:14px; height:14px; color:#ef4444; flex-shrink:0; margin-top:3px;"></i> Steel price volatility compressing gross margins.</li>
+                    <li class="report-body flex gap-2.5" style="font-size:13px;"><i data-lucide="alert-circle" style="width:14px; height:14px; color:#ef4444; flex-shrink:0; margin-top:3px;"></i> Interest rate trajectory affecting fleet owner economics.</li>
+                    <li class="report-body flex gap-2.5" style="font-size:13px;"><i data-lucide="alert-circle" style="width:14px; height:14px; color:#ef4444; flex-shrink:0; margin-top:3px;"></i> CV cycle risk — freight rate softness reducing fleet utilisation.</li>
+                </ul>
+            </div>
+        </div>
+
+        <hr class="report-divider">
+
+        <h2 class="report-h2">Financial Snapshot</h2>
+        <div style="border:1px solid var(--border); margin-bottom:32px; overflow-x:auto;">
+            <table class="data-table">
+                <thead>
+                    <tr><th>Metric</th><th>FY22A</th><th>FY23A</th><th>FY24E</th><th>FY25E</th></tr>
+                </thead>
+                <tbody>
+                    <tr><td>Revenue (₹ Cr)</td><td>22,834</td><td>38,462</td><td>41,200</td><td>44,850</td></tr>
+                    <tr><td>EBITDA Margin</td><td>7.2%</td><td>9.8%</td><td>11.2%</td><td>12.4%</td></tr>
+                    <tr><td>PAT (₹ Cr)</td><td>327</td><td>1,688</td><td>2,145</td><td>2,790</td></tr>
+                    <tr><td>EPS (₹)</td><td>1.1</td><td>5.7</td><td>7.3</td><td>9.5</td></tr>
+                    <tr><td>P/E (x)</td><td>—</td><td>30.8x</td><td>24.0x</td><td>18.5x</td></tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="flex flex-wrap gap-3 mt-8">
+            <button class="dl-btn"><i data-lucide="file-text" class="w-4 h-4" style="color:#0F4C81;"></i> Full PDF Report</button>
+        </div>
+        `
+    }
+};
+
+/* ── Router ── */
+function handleRouting() {
+    const hash = window.location.hash.substring(1);
+    if (reports[hash]) {
+        _openReport(hash);
+    } else {
+        _closeReport(false);
+        if (hash) {
+            const el = document.getElementById(hash);
+            if (el) el.scrollIntoView({ behavior: 'smooth' });
+        }
+    }
+}
+window.addEventListener('hashchange', handleRouting);
+window.addEventListener('load', () => { handleRouting(); runReveal(); });
+
+function openReport(id) {
+    if (!reports[id]) return;
+    window.location.hash = id;
+}
+
+function _openReport(id) {
+    const r = reports[id];
+    document.getElementById('report-content').innerHTML = r.content;
+    document.getElementById('read-time').innerText = r.readTime;
+    const view = document.getElementById('report-view');
+    view.classList.remove('hidden');
+    document.body.style.overflow = 'hidden';
+    view.scrollTop = 0;
+    document.getElementById('progress-bar').style.width = '0';
+    lucide.createIcons();
+}
+
+function closeReport() {
+    history.pushState('', document.title, window.location.pathname + window.location.search);
+    _closeReport(true);
+}
+
+function _closeReport(restoreScroll) {
+    const view = document.getElementById('report-view');
+    view.classList.add('hidden');
+    if (restoreScroll) document.body.style.overflow = 'auto';
+}
+
+/* ── Reading progress bar ── */
+document.getElementById('report-view').addEventListener('scroll', function () {
+    const scrolled = this.scrollTop / (this.scrollHeight - this.clientHeight) * 100;
+    document.getElementById('progress-bar').style.width = scrolled + '%';
+}, { passive: true });
+
+/* ── Keyboard: Escape closes report ── */
+document.addEventListener('keydown', e => {
+    if (e.key === 'Escape' && !document.getElementById('report-view').classList.contains('hidden')) {
+        closeReport();
+    }
+});
+</script>
+</body>
+</html>
