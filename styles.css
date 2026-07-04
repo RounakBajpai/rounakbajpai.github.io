@@ -1,0 +1,12 @@
+body{margin:0;font-family:Inter,Arial,sans-serif;background:#fff;color:#1a1a1a;line-height:1.6}
+.wrap{max-width:1050px;margin:auto;padding:32px}
+header{background:#0A2540;color:#fff}
+nav a{color:#fff;margin-right:18px;text-decoration:none}
+.hero{padding:60px 32px}
+.btn{display:inline-block;background:#0A2540;color:#fff;padding:10px 18px;text-decoration:none;border-radius:6px;margin-right:10px}
+.btn.outline{background:#fff;color:#0A2540;border:2px solid #0A2540}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:20px}
+.card{border:1px solid #ddd;padding:20px;border-radius:8px}
+.badge{display:inline-block;padding:4px 8px;border-radius:4px;color:#fff;font-size:12px}
+.buy{background:#2e7d32}.hold{background:#ef6c00}.note{background:#455a64}
+footer{background:#f5f5f5;margin-top:50px}
